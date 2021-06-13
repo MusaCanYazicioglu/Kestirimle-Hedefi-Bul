@@ -51,6 +51,7 @@ public class Handler {
                         if (jedis.exists(sensor1.getId())) {
                             Location sensor2 = g.fromJson(jedis.get(sensor1.getId()), Location.class);
                             TargetFinder(sensor2.getX(),sensor2.getY(),sensor2.getKerteriz(),sensor1.getX(),sensor1.getY(),sensor1.getKerteriz());
+                            jedis.flushDB();
                         } else {
                             jedis.set(sensor1.getId(), record.value());
                         }
